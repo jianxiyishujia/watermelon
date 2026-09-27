@@ -49,6 +49,7 @@ flutter:
     - assets/images/qq/
     - assets/images/985/
     - assets/images/shandong/
+    - assets/images/test/
 
 flutter_icons:
   image_path: "logo.png"
