@@ -1,9 +1,17 @@
 workflows:
-    build:
-        environment:
-            flutter: 2.10.5
-        scripts:
-            -flutter pub get
-            -flutter build appbundle --release
-        artifacts:
-            -build/**/*.aab
+  build_apk:
+    max_build_duration: 50
+    scripts:
+      - |
+        FLUTTER_VERSION="2.10.5"
+        echo "Install Flutter $FLUTTER_VERSION"
+        rm -rf ~/flutter
+        git clone --depth 1 -b "$FLUTTER_VERSION" https://github.com/flutter/flutter.git ~/flutter
+        export PATH="$HOME/flutter/bin:$PATH"
+        flutter precache
+        flutter --version
+        flutter clean
+        flutter pub get
+        flutter build apk --release
+    artifacts:
+      - build/app/outputs/flutter-apk/*.apk
